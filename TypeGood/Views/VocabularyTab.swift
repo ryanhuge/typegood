@@ -62,7 +62,12 @@ struct VocabularyTab: View {
                 ContentUnavailableView {
                     Label("沒有詞彙", systemImage: "text.book.closed")
                 } description: {
-                    Text("點擊 + 新增自訂詞彙替換規則")
+                    VStack(spacing: 6) {
+                        Text("點擊 + 新增自訂詞彙替換規則")
+                        Text("用於修正語音辨識經常出錯的詞彙\n例如：「太好了 → TypeGood」「派森 → Python」")
+                            .font(.caption)
+                            .foregroundStyle(.tertiary)
+                    }
                 }
             } else {
                 List {

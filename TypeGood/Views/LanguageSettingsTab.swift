@@ -23,11 +23,19 @@ struct LanguageSettingsTab: View {
             Section("文字處理") {
                 Toggle("中英文之間自動加空格", isOn: Bindable(settingsStore).settings.autoSpaceBetweenCJKAndLatin)
 
+                Text("例如「使用React框架」→「使用 React 框架」")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+
                 Picker("標點符號風格", selection: Bindable(settingsStore).settings.punctuationStyle) {
                     ForEach(PunctuationStyle.allCases, id: \.rawValue) { style in
                         Text(style.displayName).tag(style)
                     }
                 }
+
+                Text("全形：，。！？　半形：,.!?　保持原樣：不轉換")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             }
 
             Section("Whisper 提示詞") {
@@ -35,7 +43,7 @@ struct LanguageSettingsTab: View {
                     .frame(height: 80)
                     .font(.system(.body, design: .monospaced))
 
-                Text("提示詞幫助 Whisper 理解語境，可加入常用專有名詞以提升辨識準確度")
+                Text("提示詞幫助 Whisper 理解語境，可加入常用專有名詞以提升辨識準確度。例如輸入「TypeGood, React, Python」，Whisper 會優先辨識這些詞彙。")
                     .font(.caption)
                     .foregroundStyle(.secondary)
 
@@ -80,6 +88,10 @@ struct LanguageSettingsTab: View {
                 TextEditor(text: Bindable(settingsStore).settings.llmSystemPrompt)
                     .frame(height: 120)
                     .font(.system(.caption, design: .monospaced))
+
+                Text("系統提示詞決定 LLM 如何改寫文字。可依需求調整，例如改為更正式的書面語、或保留口語風格。")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
 
                 Button("重置為預設") {
                     settingsStore.settings.llmSystemPrompt = AppSettings().llmSystemPrompt
