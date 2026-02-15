@@ -1,0 +1,86 @@
+[
+    {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "source": "Iphone",
+        "target": "iPhone",
+        "isEnabled": true,
+        "note": "品牌名稱大小寫修正"
+    },
+    {
+        "id": "00000000-0000-0000-0000-000000000002",
+        "source": "iphone",
+        "target": "iPhone",
+        "isEnabled": true,
+        "note": "品牌名稱大小寫修正"
+    },
+    {
+        "id": "00000000-0000-0000-0000-000000000003",
+        "source": "Macbook",
+        "target": "MacBook",
+        "isEnabled": true,
+        "note": "品牌名稱大小寫修正"
+    },
+    {
+        "id": "00000000-0000-0000-0000-000000000004",
+        "source": "macbook",
+        "target": "MacBook",
+        "isEnabled": true,
+        "note": "品牌名稱大小寫修正"
+    },
+    {
+        "id": "00000000-0000-0000-0000-000000000005",
+        "source": "Typescript",
+        "target": "TypeScript",
+        "isEnabled": true,
+        "note": "技術術語大小寫修正"
+    },
+    {
+        "id": "00000000-0000-0000-0000-000000000006",
+        "source": "Javascript",
+        "target": "JavaScript",
+        "isEnabled": true,
+        "note": "技術術語大小寫修正"
+    },
+    {
+        "id": "00000000-0000-0000-0000-000000000007",
+        "source": "Github",
+        "target": "GitHub",
+        "isEnabled": true,
+        "note": "品牌名稱大小寫修正"
+    },
+    {
+        "id": "00000000-0000-0000-0000-000000000008",
+        "source": "Vscode",
+        "target": "VSCode",
+        "isEnabled": true,
+        "note": "品牌名稱大小寫修正"
+    },
+    {
+        "id": "00000000-0000-0000-0000-000000000009",
+        "source": "macos",
+        "target": "macOS",
+        "isEnabled": true,
+        "note": "品牌名稱大小寫修正"
+    },
+    {
+        "id": "00000000-0000-0000-0000-000000000010",
+        "source": "Macos",
+        "target": "macOS",
+        "isEnabled": true,
+        "note": "品牌名稱大小寫修正"
+    },
+    {
+        "id": "00000000-0000-0000-0000-000000000011",
+        "source": "ios",
+        "target": "iOS",
+        "isEnabled": true,
+        "note": "品牌名稱大小寫修正"
+    },
+    {
+        "id": "00000000-0000-0000-0000-000000000012",
+        "source": "Ios",
+        "target": "iOS",
+        "isEnabled": true,
+        "note": "品牌名稱大小寫修正"
+    }
+]
