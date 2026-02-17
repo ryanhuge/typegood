@@ -102,3 +102,9 @@ open TypeGood.xcodeproj
 | 語意修正 | OpenAI Chat Completion API（gpt-4o-mini） |
 | 文字輸入 | CGEvent 鍵盤事件模擬 |
 | API Key 儲存 | 檔案式加密儲存（~/Library/Application Support/TypeGood/） |
+
+## 文件
+
+- [CHANGELOG.md](CHANGELOG.md) — 版本更動紀錄
+- [BUILD.md](BUILD.md) — 建置與打包指南（環境設定、簽署、DMG 打包）
+- [DEVELOPMENT.md](DEVELOPMENT.md) — 開發指南（架構、模組說明、資料流、擴充方式）
