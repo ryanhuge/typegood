@@ -13,7 +13,7 @@ final class SettingsStore {
         didSet { save() }
     }
 
-    private static let currentSettingsVersion = 2
+    private static let currentSettingsVersion = 3
 
     private init() {
         if let data = defaults.data(forKey: settingsKey),
@@ -40,6 +40,15 @@ final class SettingsStore {
             // 如果使用者的提示詞是舊版預設（或包含舊版特徵），更新為新版
             if oldDefaultPrompts.contains(where: { currentPrompt.hasPrefix($0) }) ||
                !currentPrompt.contains("你的工作是「整理文字」，不是「回應內容」") {
+                settings.llmSystemPrompt = AppSettings.defaultLLMPrompt
+            }
+        }
+
+        // v2 → v3: 強化提示詞，加入問句範例防止 LLM 搶答問題
+        if storedVersion < 3 {
+            let currentPrompt = settings.llmSystemPrompt
+            // 如果使用者的提示詞不包含問句範例（v2 預設），更新為 v3
+            if !currentPrompt.contains("即使輸入是問句") {
                 settings.llmSystemPrompt = AppSettings.defaultLLMPrompt
             }
         }
