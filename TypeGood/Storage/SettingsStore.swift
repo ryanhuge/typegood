@@ -13,7 +13,7 @@ final class SettingsStore {
         didSet { save() }
     }
 
-    private static let currentSettingsVersion = 3
+    private static let currentSettingsVersion = 4
 
     private init() {
         if let data = defaults.data(forKey: settingsKey),
@@ -50,6 +50,13 @@ final class SettingsStore {
             // 如果使用者的提示詞不包含問句範例（v2 預設），更新為 v3
             if !currentPrompt.contains("即使輸入是問句") {
                 settings.llmSystemPrompt = AppSettings.defaultLLMPrompt
+            }
+        }
+
+        // v3 → v4: 新增 llmModelName 欄位，從 APIProvider 預設值帶入
+        if storedVersion < 4 {
+            if settings.llmModelName.isEmpty {
+                settings.llmModelName = settings.llmProvider.defaultLLMModelName
             }
         }
 

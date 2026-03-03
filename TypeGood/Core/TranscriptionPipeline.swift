@@ -140,11 +140,13 @@ final class TranscriptionPipeline {
             let llmProvider = settings.llmProvider
             if settings.enableLLMPostProcessing,
                let llmApiKey = settingsStore.apiKey(for: llmProvider) {
-                print("[TypeGood] LLM 後處理啟用，使用 \(llmProvider.displayName) / \(llmProvider.llmModelName)")
+                let modelName = settings.llmModelName
+                print("[TypeGood] LLM 後處理啟用，使用 \(llmProvider.displayName) / \(modelName)")
                 let llm = LLMPostProcessor(
                     provider: llmProvider,
                     apiKey: llmApiKey,
-                    systemPrompt: settings.llmSystemPrompt
+                    systemPrompt: settings.llmSystemPrompt,
+                    modelName: modelName
                 )
                 do {
                     result.processedText = try await llm.process(result.rawText)

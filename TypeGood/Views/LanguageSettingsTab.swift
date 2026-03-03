@@ -3,6 +3,8 @@ import SwiftUI
 /// 語言設定頁面
 struct LanguageSettingsTab: View {
     private var settingsStore = SettingsStore.shared
+    @State private var customModelName: String = ""
+    @State private var isCustomModel = false
 
     var body: some View {
         Form {
@@ -62,11 +64,12 @@ struct LanguageSettingsTab: View {
                 }
                 .pickerStyle(.segmented)
 
-                HStack {
-                    Text("使用模型")
-                    Spacer()
-                    Text(settingsStore.settings.llmProvider.llmModelName)
-                        .foregroundStyle(.secondary)
+                // 模型選擇器
+                Picker("使用模型", selection: Bindable(settingsStore).settings.llmModelName) {
+                    let models = modelList
+                    ForEach(models, id: \.self) { model in
+                        Text(model).tag(model)
+                    }
                 }
 
                 if settingsStore.apiKey(for: settingsStore.settings.llmProvider) == nil {
@@ -102,5 +105,16 @@ struct LanguageSettingsTab: View {
         }
         .formStyle(.grouped)
         .padding()
+    }
+
+    /// 模型清單：精選清單 + 目前使用的模型（如果不在清單中）
+    private var modelList: [String] {
+        let provider = settingsStore.settings.llmProvider
+        var models = ModelListService.models(for: provider)
+        let current = settingsStore.settings.llmModelName
+        if !models.contains(current) {
+            models.insert(current, at: 0)
+        }
+        return models
     }
 }

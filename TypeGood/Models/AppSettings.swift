@@ -43,6 +43,9 @@ struct AppSettings: Codable {
     /// LLM 使用的 API 供應商（獨立於語音辨識供應商）
     var llmProvider: APIProvider = .openai
 
+    /// LLM 使用的模型名稱（可由使用者自選）
+    var llmModelName: String = "gpt-4.1"
+
     /// LLM 後處理系統提示詞
     var llmSystemPrompt: String = AppSettings.defaultLLMPrompt
 
@@ -82,6 +85,7 @@ struct AppSettings: Codable {
         autoSendDelay = try container.decodeIfPresent(Double.self, forKey: .autoSendDelay) ?? 0.3
         enableLLMPostProcessing = try container.decodeIfPresent(Bool.self, forKey: .enableLLMPostProcessing) ?? true
         llmProvider = try container.decodeIfPresent(APIProvider.self, forKey: .llmProvider) ?? .openai
+        llmModelName = try container.decodeIfPresent(String.self, forKey: .llmModelName) ?? "gpt-4.1"
         llmSystemPrompt = try container.decodeIfPresent(String.self, forKey: .llmSystemPrompt) ?? AppSettings.defaultLLMPrompt
     }
 }

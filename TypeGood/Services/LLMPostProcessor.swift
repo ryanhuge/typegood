@@ -6,11 +6,13 @@ struct LLMPostProcessor {
     private let provider: APIProvider
     private let apiKey: String
     private let systemPrompt: String
+    private let modelName: String
 
-    init(provider: APIProvider, apiKey: String, systemPrompt: String) {
+    init(provider: APIProvider, apiKey: String, systemPrompt: String, modelName: String) {
         self.provider = provider
         self.apiKey = apiKey
         self.systemPrompt = systemPrompt
+        self.modelName = modelName
     }
 
     /// 使用 LLM 修正辨識文字
@@ -25,12 +27,12 @@ struct LLMPostProcessor {
         request.timeoutInterval = 15
 
         let body: [String: Any] = [
-            "model": provider.llmModelName,
+            "model": modelName,
             "messages": [
                 ["role": "system", "content": systemPrompt],
                 ["role": "user", "content": text]
             ],
-            "temperature": 0.3,
+            "temperature": 0.1,
             "max_tokens": 2048
         ]
 

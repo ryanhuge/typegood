@@ -56,7 +56,7 @@ struct APISettingsTab: View {
                 HStack {
                     Text("模型")
                     Spacer()
-                    Text(APIProvider.openai.llmModelName)
+                    Text(settingsStore.settings.llmModelName)
                         .foregroundStyle(.secondary)
                 }
                 VStack(alignment: .leading, spacing: 4) {
@@ -68,7 +68,7 @@ struct APISettingsTab: View {
                         .font(.caption).foregroundStyle(.secondary)
                     Text("3. 複製 sk- 開頭的 Key 貼到上方欄位")
                         .font(.caption).foregroundStyle(.secondary)
-                    Text("需預先儲值（最低 $5 USD），使用 gpt-4o-mini 費用極低。")
+                    Text("需預先儲值（最低 $5 USD），費用極低。")
                         .font(.caption).foregroundStyle(.secondary).italic()
                     Button("開啟 OpenAI Platform") {
                         NSWorkspace.shared.open(URL(string: "https://platform.openai.com/api-keys")!)
@@ -170,7 +170,8 @@ struct APISettingsTab: View {
                     let llm = LLMPostProcessor(
                         provider: .openai,
                         apiKey: apiKey,
-                        systemPrompt: "回覆「OK」即可。"
+                        systemPrompt: "回覆「OK」即可。",
+                        modelName: settingsStore.settings.llmModelName
                     )
                     let response = try await llm.process("測試")
                     testResult = (provider, true, "OpenAI LLM 連線成功！（回應：\(response)）")

@@ -172,10 +172,10 @@ struct MenuBarView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 Spacer()
-                Text("OpenAI \(APIProvider.openai.llmModelName)")
+                Text("\(settingsStore.settings.llmProvider.displayName) \(settingsStore.settings.llmModelName)")
                     .font(.caption)
                 Circle()
-                    .fill(settingsStore.apiKey(for: .openai) != nil ? .green : .red)
+                    .fill(settingsStore.apiKey(for: settingsStore.settings.llmProvider) != nil ? .green : .red)
                     .frame(width: 6, height: 6)
             }
         }
